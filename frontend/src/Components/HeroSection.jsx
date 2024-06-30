@@ -1,4 +1,4 @@
-
+// import background from '../assets/background.jpg'
 import React from "react";
 import { Box, Button } from '@mui/material'
 function HeroSection() {
@@ -8,7 +8,7 @@ function HeroSection() {
         <>
             <Box
                 sx={{
-                    // backgroundImage: url'),
+                    // backgroundImage: url('../assets/images/background.jpg'),
                     height: '200px',
                     backgroundSize: 'cover',
                     backgroundPosition: 'center',

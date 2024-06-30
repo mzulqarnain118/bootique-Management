@@ -6,7 +6,8 @@ const categories = ['Dresses', 'Dupattas', 'Tops', 'Bottoms'];
 function Categories() {
   return (
     <Box sx={{ my: 5 }}>
-      <Typography variant="h4" gutterBottom>
+      <Typography variant="h4"
+      sm={{textAlign:'center'}} gutterBottom>
         Shop by Category
       </Typography>
       <Grid container spacing={4}>
@@ -14,7 +15,8 @@ function Categories() {
           <Grid item key={index} xs={12} sm={6} md={3}>
             <Paper
               sx={{
-                p: 4,
+                p: 6,
+                m:4,
                 textAlign: 'center',
                 backgroundColor: '#3498db',
                 color: 'white',

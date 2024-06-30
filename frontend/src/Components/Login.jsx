@@ -1,10 +1,13 @@
-import React, { useState } from 'react';
+// Login.js
+import React, { useState, useContext } from 'react';
 import { Box, TextField, Button, Typography, Container } from "@mui/material";
-import {useNavigate} from 'react-router-dom'
+import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
+import { AuthContext } from '../Components/AuthContext';
 
 function Login() {
-    const navigate=useNavigate();
+  const navigate = useNavigate();
+  const { login } = useContext(AuthContext);
   const [formData, setFormData] = useState({
     email: "",
     password: "",
@@ -28,7 +31,7 @@ function Login() {
       });
       if (response.status === 200) {
         alert('Login successful');
-         localStorage.setItem('user', JSON.stringify(response.data.user));
+        login(response.data.user);
         navigate('/');
       } else {
         alert('Failed to login');

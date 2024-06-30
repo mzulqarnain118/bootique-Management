@@ -15,25 +15,28 @@ import "./App.css";
 import { CartProvider } from "./Components/CartContext";
 
 function App() {
+  const noHeaderFooterRoutes = ["/login", "/register"];
+  const currentPath = window.location.pathname;
+
   return (
     <CartProvider>
-      <Header />
-      <HeroSection />
+      {!noHeaderFooterRoutes.includes(currentPath) && <Header />}
+      {!noHeaderFooterRoutes.includes(currentPath) && <HeroSection />}
       <BrowserRouter>
         <Routes>
           <Route path="/cart" element={<CartProduct />} />
           <Route path="/product" element={<FeaturedProducts />} />
-          <Route path="/new-arrivals" element={<NewArrivals />}/>
+          <Route path="/new-arrivals" element={<NewArrivals />} />
           <Route path="/register" element={<Register />} />
           <Route path="/login" element={<Login />} />
         </Routes>
       </BrowserRouter>
-      <Categories />
-      <Offers />
-      <Newsletter />
-      <NewArrivals />
-      <Testimonals />
-      <Footer />
+      {!noHeaderFooterRoutes.includes(currentPath) && <Categories />}
+      {!noHeaderFooterRoutes.includes(currentPath) && <Offers />}
+      {!noHeaderFooterRoutes.includes(currentPath) && <Newsletter />}
+      {!noHeaderFooterRoutes.includes(currentPath) && <NewArrivals />}
+      {!noHeaderFooterRoutes.includes(currentPath) && <Testimonals />}
+      {!noHeaderFooterRoutes.includes(currentPath) && <Footer />}
     </CartProvider>
   );
 }

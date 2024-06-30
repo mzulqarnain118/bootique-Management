@@ -1,9 +1,5 @@
 import React, { useContext,useEffect,useState } from 'react';
-import { Box, Grid, Card, CardMedia, CardContent, Typography, Button } from '@mui/material';
-import img1 from '../assets/images/img1.jpg';
-import img2 from '../assets/images/img2.jpg';
-import img3 from '../assets/images/img3.jpg';
-import img4 from '../assets/images/bundle.jpg';
+import { Box, Grid, Card, CardMedia, CardContent, Typography, Button } from "@mui/material";
 import { CartContext } from './CartContext'; // Import the CartContext
 import axios from 'axios';
 
@@ -53,19 +49,28 @@ function NewArrivals() {
         {products.map((product) => (
           <Grid item key={product.id} xs={12} sm={6} md={3}>
             <Card>
-              <CardMedia
+            <CardMedia
                 component="img"
                 height="200"
-                image={`../assets/images/${product.img}`}
+                image={product.img}
                 alt={product.name}
               />
-              <CardContent>
-                <Typography variant="h6">{product.name}</Typography>
-                <Typography variant="body2" color="textSecondary">
-                  {product.price}
-                </Typography>
+              <CardContent sx={{
+                display:'flex',
+                flexDirection:'column',
+
+              }}>
+                <Typography variant="h5">{product.name}</Typography>
+                <Typography variant="p"><b>Stock</b>:           {product.stock}</Typography>
+                <Typography variant="p"><b>Colors</b>:   {"    "}{product.colors}</Typography>
+                <Typography variant="p"> <b>Size:</b>    {product.sizes}</Typography>
+
+
+
+
+                <Typography variant="p"><b>Price</b>:                  {product.price}</Typography>
                 <Button variant="contained" sx={{ my: 2 }} color="secondary" href="/cart">
-                  Go to Cart
+                  Visit Cart
                 </Button>
                 <Button
                   variant="contained"
