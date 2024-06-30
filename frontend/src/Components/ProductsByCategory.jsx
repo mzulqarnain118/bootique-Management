@@ -1,4 +1,4 @@
-import React, { useContext, useEffect, useState } from "react";
+import React, { useContext, useState, useEffect } from "react";
 import {
   Box,
   Grid,
@@ -9,27 +9,28 @@ import {
   Button,
   TextField,
 } from "@mui/material";
-import { CartContext } from "./CartContext"; // Import the CartContext
 import axios from "axios";
+import { CartContext } from "./CartContext";
+import { useParams } from "react-router-dom";
 
-function NewArrivals() {
+function ProductsByCategory() {
   const [quantity, setQuantity] = useState(1); // State for quantity
-
   const [products, setProducts] = useState([]);
+  const { category } = useParams();
 
   useEffect(() => {
-    const getFeaturedProducts = async () => {
-      const data = await fetchNewArrivalProducts();
+    const getProductsByCategory = async () => {
+      const data = await fetchProductsByCategory();
       setProducts(data);
     };
-    getFeaturedProducts();
+    getProductsByCategory();
   }, []);
 
-  const fetchNewArrivalProducts = async () => {
+  const fetchProductsByCategory = async () => {
     try {
       const response = await axios.get("http://127.0.0.1:5000/api/products", {
         params: {
-          type: "new_arrival",
+          category,
         },
       });
       return response.data;
@@ -39,6 +40,7 @@ function NewArrivals() {
       return [];
     }
   };
+
   const addToCart = async (product) => {
     try {
       const response = await axios.post("http://127.0.0.1:5000/api/cart", {
@@ -48,7 +50,7 @@ function NewArrivals() {
       });
       if (response.status === 201) {
         alert("Item added to cart successfully!");
-        const data = await fetchNewArrivalProducts();
+        const data = await fetchProductsByCategory();
         setProducts(data);
       } else {
         alert("Failed to add item to cart");
@@ -58,15 +60,16 @@ function NewArrivals() {
       alert("Failed to add item to cart");
     }
   };
-
   return (
     <Box sx={{ my: 1 }}>
       <Typography variant="h4" gutterBottom>
-        New Arrivals
+        {category.toUpperCase()}
       </Typography>
-      {products?.length === 0 && <p>{`No products found`}</p>}
+      {products?.length === 0 && (
+        <p>{`No products found against ${category} category`}</p>
+      )}
       <Grid container spacing={4}>
-        {products.map((product) => (
+        {products?.map((product) => (
           <Grid item key={product.id} xs={12} sm={6} md={3}>
             <Card>
               <CardMedia
@@ -93,7 +96,6 @@ function NewArrivals() {
                   {" "}
                   <b>Size:</b> {product.sizes}
                 </Typography>
-
                 <Typography variant="p">
                   <b>Price</b>: {product.price}
                 </Typography>
@@ -130,4 +132,4 @@ function NewArrivals() {
   );
 }
 
-export default NewArrivals;
+export default ProductsByCategory;

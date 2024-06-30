@@ -1,47 +1,20 @@
-// // Header.js
-// import React, { useContext } from "react";
-// import { AppBar, Toolbar, Typography, Button, IconButton } from "@mui/material";
-// import ShoppingCart from "@mui/icons-material/ShoppingCart";
-// import { AuthContext } from '../Components/AuthContext';
-
-// function Header() {
-//   const { isAuthenticated, logout } = useContext(AuthContext);
-
-//   return (
-//     <AppBar position="static">
-//       <Toolbar>
-//         <Typography variant="h6" style={{ flexGrow: 1, margin: 4 }}>
-//           Ethnic Wear
-//         </Typography>
-//         <Button color="inherit" href="/">Home</Button>
-//         <Button color="inherit" href="/dresses">Dresses</Button>
-//         <Button color="inherit" href="/dupattas">Dupattas</Button>
-//         <Button color="inherit" href="/tops">Tops</Button>
-//         <Button color="inherit" href="/bottoms">Bottoms</Button>
-//         <Button color="inherit" href="/newarrival">New Arrival</Button>
-//         <Button color="inherit" href="/offers">Offers</Button>
-//         <Button color="inherit" href="/product">Featured Product</Button>
-//         {isAuthenticated ? (
-//           <Button color="inherit" onClick={logout}>Logout</Button>
-//         ) : (
-//           <Button color="inherit" href="/login">Login</Button>
-//         )}
-//         <IconButton color="inherit" href='/cart'>
-//           <ShoppingCart />
-//         </IconButton>
-//       </Toolbar>
-//     </AppBar>
-//   );
-// }
-
-// export default Header;
-// Header.js
-// Header.js
 import React, { useContext, useState } from "react";
-import { AppBar, Toolbar, Typography, Button, IconButton, Box, Drawer, List, ListItem, ListItemText, Hidden } from "@mui/material";
+import {
+  AppBar,
+  Toolbar,
+  Typography,
+  Button,
+  IconButton,
+  Box,
+  Drawer,
+  List,
+  ListItem,
+  ListItemText,
+  Hidden,
+} from "@mui/material";
 import MenuIcon from "@mui/icons-material/Menu";
 import ShoppingCart from "@mui/icons-material/ShoppingCart";
-import { AuthContext } from '../Components/AuthContext';
+import { AuthContext } from "../Components/AuthContext";
 
 function Header() {
   const { isAuthenticated, logout } = useContext(AuthContext);
@@ -52,14 +25,14 @@ function Header() {
   };
 
   const menuItems = [
-    { text: 'Home', href: '/' },
-    { text: 'Dresses', href: '/dresses' },
-    { text: 'Dupattas', href: '/dupattas' },
-    { text: 'Tops', href: '/tops' },
-    { text: 'Bottoms', href: '/bottoms' },
-    { text: 'New Arrival', href: '/newarrival' },
-    { text: 'Offers', href: '/offers' },
-    { text: 'Featured Product', href: '/product' }
+    { text: "Home", href: "/dashboard" },
+    { text: "Dupattas", href: "/categories/dupattas" },
+    { text: "Dresses", href: "/categories/dresses" },
+    { text: "Tops", href: "/categories/tops" },
+    { text: "Bottoms", href: "/categories/bottoms" },
+    { text: "New Arrival", href: "/new-arrivals" },
+    { text: "Offers", href: "/offers" },
+    { text: "Featured Product", href: "/featured" },
   ];
 
   const drawer = (
@@ -99,28 +72,28 @@ function Header() {
             <MenuIcon />
           </IconButton>
         </Hidden>
-        <Drawer
-          anchor="left"
-          open={drawerOpen}
-          onClose={toggleDrawer(false)}
-        >
+        <Drawer anchor="left" open={drawerOpen} onClose={toggleDrawer(false)}>
           {drawer}
         </Drawer>
         <Hidden mdDown>
-          <Box sx={{ display: 'flex', gap: 2 }}>
+          <Box sx={{ display: "flex", gap: 2 }}>
             {menuItems.map((item) => (
               <Button color="inherit" href={item.href} key={item.text}>
                 {item.text}
               </Button>
             ))}
             {isAuthenticated ? (
-              <Button color="inherit" onClick={logout}>Logout</Button>
+              <Button color="inherit" onClick={logout}>
+                Logout
+              </Button>
             ) : (
-              <Button color="inherit" href="/login">Login</Button>
+              <Button color="inherit" href="/login">
+                Login
+              </Button>
             )}
           </Box>
         </Hidden>
-        <IconButton color="inherit" href='/cart'>
+        <IconButton color="inherit" href="/cart">
           <ShoppingCart />
         </IconButton>
       </Toolbar>

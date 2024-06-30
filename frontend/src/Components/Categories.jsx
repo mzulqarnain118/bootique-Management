@@ -1,13 +1,14 @@
-import React from 'react';
-import { Box, Grid, Paper, Typography } from '@mui/material';
+import React from "react";
+import { useNavigate } from "react-router-dom";
+import { Box, Grid, Paper, Typography } from "@mui/material";
 
-const categories = ['Dresses', 'Dupattas', 'Tops', 'Bottoms'];
+const categories = ["Dresses", "Dupattas", "Tops", "Bottoms"];
 
 function Categories() {
+  const navigate = useNavigate();
   return (
     <Box sx={{ my: 5 }}>
-      <Typography variant="h4"
-      sm={{textAlign:'center'}} gutterBottom>
+      <Typography variant="h4" sm={{ textAlign: "center" }} gutterBottom>
         Shop by Category
       </Typography>
       <Grid container spacing={4}>
@@ -16,12 +17,13 @@ function Categories() {
             <Paper
               sx={{
                 p: 6,
-                m:4,
-                textAlign: 'center',
-                backgroundColor: '#3498db',
-                color: 'white',
-                cursor: 'pointer'
+                m: 4,
+                textAlign: "center",
+                backgroundColor: "#3498db",
+                color: "white",
+                cursor: "pointer",
               }}
+              onClick={() => navigate(`/categories/${category.toLowerCase()}`)}
             >
               {category}
             </Paper>
