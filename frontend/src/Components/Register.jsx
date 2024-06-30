@@ -110,6 +110,9 @@ function Register() {
           <Button type="submit" variant="contained" color="secondary" fullWidth>
             Register
           </Button>
+          <Typography>
+            Already have an account? <a href="/login">Login here</a>
+          </Typography>
         </Box>
       </Box>
     </Container>

@@ -81,6 +81,9 @@ function Login() {
           <Button type="submit" variant="contained" color="secondary" fullWidth>
             Signin
           </Button>
+          <Typography>
+            Don't have an account? <a href="/register">Register here</a>
+          </Typography>
         </Box>
       </Box>
     </Container>

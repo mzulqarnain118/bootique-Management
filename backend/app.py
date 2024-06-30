@@ -2,6 +2,7 @@ from flask import Flask, request, jsonify, session
 from flask_cors import CORS
 import MySQLdb
 
+
 app = Flask(__name__)
 app.secret_key = 'your_secret_key'
 

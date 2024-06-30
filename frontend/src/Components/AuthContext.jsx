@@ -10,7 +10,7 @@ const AuthProvider = ({ children }) => {
     if (user) {
       setIsAuthenticated(true);
     }
-  }, []);
+  }, []); 
 
   const login = (user) => {
     localStorage.setItem('user', JSON.stringify(user));
